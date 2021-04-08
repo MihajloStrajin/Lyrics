@@ -1,0 +1,20 @@
+:host{
+  display: block;
+  margin-top: 1rem;
+}
+
+.info-text{
+  text-align: center;
+}
+
+.full-text{
+  white-space: pre-wrap;
+}
+
+mat-spinner{
+  margin: auto;
+}
+
+mat-paginator{
+  margin-top: 1rem;
+}

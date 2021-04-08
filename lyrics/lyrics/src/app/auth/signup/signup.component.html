@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        name="email"
+        ngModel
+        type="email"
+        placeholder="E-mail"
+        #emailInput="ngModel"
+        required
+        email>
+        <mat-error *ngIf="emailInput.invalid">Unesite email adresu</mat-error>
+        <!-- ? proverava prvo dali pesma postoji; formControlName="title" === [formControlName]="'title'" -->
+    </mat-form-field>
+    <mat-form-field>
+      <input
+      name="password"
+      ngModel
+      type="password"
+      matInput
+      placeholder="Password"
+      #passwordInput="ngModel"
+      required
+      password
+      [type]="hide ? 'password' : 'text'"
+      />
+      <mat-icon matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        {{hide ? "visibility_off" : "visibility"}}</mat-icon>
+      <mat-error *ngIf="passwordInput.invalid">Unesite lozinku</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      *ngIf="!isLoading">Registrujte se</button>
+  </form>
+</mat-card>

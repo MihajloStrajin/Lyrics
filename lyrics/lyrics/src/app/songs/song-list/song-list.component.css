@@ -1,0 +1,29 @@
+:host{
+  display: block;
+  margin-top: 1rem;
+}
+
+.info-text{
+  text-align: center;
+}
+
+.full-text{
+  white-space: pre-wrap;
+}
+
+mat-spinner{
+  margin: auto;
+}
+
+mat-paginator{
+  margin-top: 1rem;
+}
+
+.search{
+  padding-bottom: 2rem;
+}
+
+input[type=text]:focus{
+  background-color:rgb(224, 224, 240);
+}
+

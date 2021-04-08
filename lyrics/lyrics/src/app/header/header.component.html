@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+  <span>
+    <a routerLink="/">Pesme</a>
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/create" routerLinkActive="mat-accent"
+        >Nova pesma</a
+      >
+    </li>
+    <li *ngIf="userIsAuthenticated && !userIsAdmin">
+      <a mat-button routerLink="/favoriteSongs" routerLinkActive="mat-accent"
+        >Omiljene pesme</a
+      >
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/login" routerLinkActive="mat-accent"
+        >Prijava</a
+      >
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/signup" routerLinkActive="mat-accent"
+        >Registracija</a
+      >
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <button mat-button (click)="onLogout()">Odjavi se</button>
+    </li>
+  </ul>
+</mat-toolbar>

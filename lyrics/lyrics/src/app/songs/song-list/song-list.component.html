@@ -1,0 +1,21 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="songs.length > 0 && !isLoading" >
+  <input matInput class="search" type="text" placeholder="Search" [(ngModel)]="term">
+  <mat-expansion-panel *ngFor="let song of songs | filter:term">
+    <mat-expansion-panel-header>
+      {{ song.title }}
+    </mat-expansion-panel-header>
+    <p class="full-text">{{song.content}}</p>
+    <iframe [src]="songsService.getEmbedUrl(song.url)"
+      width="360" height="215" frameborder="0" allowfullscreen>
+    </iframe>
+    <mat-action-row *ngIf="userIsAuthenticated">
+      <a mat-button color="primary" [routerLink]="['/edit', song.id]" *ngIf="userId == song.creator || userIsAdmin">IZMENI</a>
+      <button mat-button color="warn" (click)="onDelete(song.id)" *ngIf="userId == song.creator || userIsAdmin">IZBRISI</button>
+      <button mat-button color="primary" (click)="onAddFavoriteSong(song)" *ngIf="!userIsAdmin">DODAJ U OMILJENE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator [length]="totalSongs" [pageSize]="songsPerPage" [pageSizeOptions]="pageSizeOptions"
+ (page)="onChangePage($event)" *ngIf="songs.length>0"></mat-paginator>
+<p class=" info-text .mat-body-1" *ngIf="songs.length <= 0 && !isLoading" >Nema pesama!</p>

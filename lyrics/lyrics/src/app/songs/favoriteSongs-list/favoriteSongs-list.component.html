@@ -1,0 +1,16 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="favoriteSongs.length > 0 && !isLoading" >
+  <mat-expansion-panel *ngFor="let favoriteSong of favoriteSongs">
+    <mat-expansion-panel-header>
+      {{ favoriteSong.title }}
+    </mat-expansion-panel-header>
+    <p class="full-text">{{favoriteSong.content}}</p>
+    <iframe [src]="songsService.getEmbedUrl(favoriteSong.url)"
+      width="360" height="215" frameborder="0" allowfullscreen>
+    </iframe>
+    <mat-action-row>
+      <button mat-button color="warn" (click)="onDelete(favoriteSong.id)">IZBRISI</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class=" info-text .mat-body-1" *ngIf="favoriteSongs.length <= 0 && !isLoading" >Nema pesama!</p>

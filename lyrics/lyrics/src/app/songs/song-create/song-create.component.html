@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form [formGroup]="form"  *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="title"
+        placeholder="Naslov i autor">
+        <mat-error *ngIf="form.get('title').invalid">Unesite naslov</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        matInput
+        rows="10"
+        formControlName="content"
+        placeholder="Tekst"></textarea>
+        <mat-error *ngIf="form.get('content').invalid">Unesite tekst</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Url</mat-label>
+      <textarea formControlName = "url" matInput #urlInput></textarea>
+      <mat-error *ngIf="form.get('url').invalid">Unesite url</mat-error>
+    </mat-form-field>
+    <iframe [src]="getEmbedUrl()" *ngIf="url!==''"
+      width="360" height="215" frameborder="0" allowfullscreen >
+    </iframe>
+    <button mat-button color="primary" (click)="onAddUrl(urlInput)">Unesi video</button>
+    <button
+    (click)="onSaveSong()"
+      mat-raised-button
+      color="primary"
+      type="submit">Sacuvaj pesmu</button>
+  </form>
+</mat-card>
